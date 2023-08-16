@@ -3,10 +3,10 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/fiebase/page';
 import { signOut } from 'firebase/auth';
-import { useState } from 'react';
 import Modal from './Modal';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 import { IconSquarePlus, IconHeart, IconUser, IconSettings } from '@tabler/icons-react';
 
@@ -75,7 +75,7 @@ export default function Menu() {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem><Link href={'/newpost'}>
+                  <DropdownMenuItem><Link href={'/new-post'}>
                     <div className="flex gap-2">
                     <IconSquarePlus />New Post
                     </div>
