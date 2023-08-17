@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { getDocs, collection } from 'firebase/firestore'
 import { db } from '@/lib/fiebase/page'
 import { Post } from '@/types/post'
+import { format } from 'date-fns';
 
 const PostCard = () => {
     const [postLists, setPostLists] = useState<Post[]>();;
@@ -22,7 +23,11 @@ const PostCard = () => {
   return <div className='flex justify-center items-center mt-10'> 
     {postLists?.map((post)=> {
         return <div key={post.id} className='text-2xl'>{post.title}
-        <img src={post.author?.pfp} alt="" /> </div>
+            <img src={post.author?.pfp} alt="" />  
+            <div>
+            {post.createdAt}
+            </div>
+        </div>
     })} 
   </div>
 }

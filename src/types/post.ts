@@ -6,6 +6,7 @@ export type Post = {
   author: {
     id: string;
     name: string;
-    pfp:string;
+    pfp: string;
   };
-  }
+  createdAt: string;
+}

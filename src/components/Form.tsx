@@ -5,6 +5,8 @@ import { useState } from "react"
 import { addDoc, collection } from "firebase/firestore"
 import { auth, db } from '../lib/fiebase/page'
 import { ToastContainer, toast } from "react-toastify"
+import { format } from 'date-fns';
+
 
 const Form = () => {
   const [ title, setTitle ] = useState("");
@@ -12,14 +14,26 @@ const Form = () => {
 
   const postCollectionRef = collection(db, "posts")
   const CreatePost = async () => {
-    await addDoc(postCollectionRef, {title, postText, author: {name: auth.currentUser?.displayName, id: auth.currentUser?.uid, pfp: auth.currentUser?.photoURL}
+    const currentDate = Date.now();
+    const formattedDate = format(currentDate, 'dd MMM yyyy, HH:mm');
+  
+    await addDoc(postCollectionRef, {
+      title,
+      postText,
+      createdAt: formattedDate, 
+      author: {
+        name: auth.currentUser?.displayName,
+        id: auth.currentUser?.uid,
+        pfp: auth.currentUser?.photoURL,
+      },
     });
+  
     toast.success('Successfully Created Post!', {
       pauseOnHover: false,
       hideProgressBar: true,
-      theme: 'dark'
+      theme: 'dark',
     });
-  }
+  };
 
   return (
     <div className='w-full space-y-4'> 
