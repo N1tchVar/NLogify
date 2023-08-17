@@ -1,6 +1,6 @@
 import { IconBrandGoogle } from '@tabler/icons-react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/fiebase/page';
+import { auth } from '@/lib/firebase/page';
 
 interface ModalProps {
   visible: boolean;

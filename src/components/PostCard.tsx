@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { getDocs, collection } from 'firebase/firestore'
-import { db } from '@/lib/fiebase/page'
+import { db } from '@/lib/firebase/page'
 import { Post } from '@/types/post'
 import { IconShare } from '@tabler/icons-react'
+import Link from 'next/link';
  
 const PostCard = () => {
     const [postLists, setPostLists] = useState<Post[]>();;
@@ -23,9 +24,10 @@ const PostCard = () => {
   return <div  className='flex flex-col gap-4 justify-center items-center mt-10 w-full'> 
     {postLists?.map((post)=> {
         return <div key={post.id} className='flex flex-col gap-1.5 w-full'>
+            
             <div className='px-2 flex flex-col w-full'>
                 <div className='rounded-md border px-4 py-2'>
-                    <h1 className='text-xl py-2'>{post.title}</h1>
+                <Link href={`/posts/${post.id}`}><h1 className='text-xl py-2'>{post.title}</h1></Link>
                     <hr className='mt-2 mb-4'/>
                         <div className='flex justify-between items-center'>
                             <div className='flex justify-center items-center'>

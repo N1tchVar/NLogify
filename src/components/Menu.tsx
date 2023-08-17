@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/fiebase/page';
+import { auth } from '@/lib/firebase/page';
 import { signOut } from 'firebase/auth';
 import Modal from './Modal';
 import { toast, ToastContainer } from 'react-toastify';

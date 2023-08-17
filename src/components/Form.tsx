@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { addDoc, collection } from "firebase/firestore"
-import { auth, db } from '../lib/fiebase/page'
+import { auth, db } from '@/lib/firebase/page'
 import { ToastContainer, toast } from "react-toastify"
 import { format } from 'date-fns';
 
