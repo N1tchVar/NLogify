@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Form from '@/components/Form';
-import { auth } from '@/lib/fiebase/page';
+import { auth } from '@/lib/firebase/page';
 import Modal from '@/components/Modal'; // Adjust the import path
 import { useRouter } from 'next/router';
 
@@ -25,7 +25,7 @@ const NewPostPage = () => {
   return (
     <div className='mx-auto my-24 flex max-w-3xl flex-col items-center gap-4'>
       <h1 className='text-3xl font-bold'>New post</h1>
-      {auth.currentUser ? (
+      {auth ? (
         <Form />
       ) : (
         <Modal
