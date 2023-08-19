@@ -76,6 +76,7 @@ const Form = () => {
           <div className="flex flex-col px-2 mt-2">
             <label className="text-sm py-2 font-medium">Upload an Image</label>
             <input
+              className="file-input"
               type="file"
               onChange={(event) => {
                 setImageUpload(event.target.files?.[0] || null);

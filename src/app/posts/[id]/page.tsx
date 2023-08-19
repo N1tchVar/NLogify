@@ -37,6 +37,7 @@ const Post = ({ params }: { params: { id: string } }) => {
         <h1 className="text-2xl font-bold">{post.title}</h1>
         <div className="py-2 w-1/2 text-center">
           <p className="text-md">{post.postText}</p>
+          <img src={post.imageUrl} alt="" />
         </div>
         <div className="flex justify-start items-center py-8  ">
           <img src={post.author.pfp} className="h-10 rounded-3xl" alt="" />
@@ -44,7 +45,7 @@ const Post = ({ params }: { params: { id: string } }) => {
           <p className="text-sm text-gray-500/70"> - {post.createdAt}</p>
         </div>
       </div>
-      <img src={post.imageUrl} alt="" />
+      
     </div>
   );
 }

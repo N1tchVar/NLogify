@@ -70,7 +70,7 @@ export default function Menu() {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <div className='flex justify-center items-center gap-2 text-md p-2 border rounded-xl border-white'>
-                    <img src={user.photoURL || '/default-avatar.png'} alt='User Avatar' className='w-6 h-6 rounded-full' />
+                    <img src={user.photoURL || '/default-avatar.png'} alt='Avatar' className='w-6 h-6 rounded-full' />
                     {user.displayName || 'User'}
                   </div>
                 </DropdownMenuTrigger>

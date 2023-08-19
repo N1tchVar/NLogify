@@ -25,3 +25,13 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.file-input::file-selector-button {
+  font-weight: bold;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  padding: 0.5em;
+  border: solid 1px rgb(255, 255, 255);
+  border-radius: 0.5rem;
+
+}
