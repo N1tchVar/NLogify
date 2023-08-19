@@ -1,9 +1,8 @@
 'use client'
 
-import { getDoc, doc } from "@firebase/firestore";
-import { GetServerSideProps } from "next";
-import { db } from "@/lib/firebase/page";
 import React from "react";
+import { getDoc, doc } from "@firebase/firestore";
+import { db, storage } from "@/lib/firebase/page";
 import { Post } from '@/types/post';
 import { useRouter } from 'next/navigation';
 
@@ -24,6 +23,7 @@ const Post = ({ params }: { params: { id: string } }) => {
       
       setPost(post as Post)
     }
+    console.log(post?.imageUrl)
     fetchPost()
   }, [id])
 
@@ -44,6 +44,7 @@ const Post = ({ params }: { params: { id: string } }) => {
           <p className="text-sm text-gray-500/70"> - {post.createdAt}</p>
         </div>
       </div>
+      <img src={post.imageUrl} alt="" />
     </div>
   );
 }

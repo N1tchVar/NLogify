@@ -3,30 +3,47 @@
 import Link from "next/link"
 import { useState } from "react"
 import { addDoc, collection } from "firebase/firestore"
-import { auth, db } from '@/lib/firebase/page'
+import { auth, db, storage } from '@/lib/firebase/page'
 import { ToastContainer, toast } from "react-toastify"
 import { format } from 'date-fns';
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
 
 const Form = () => {
   const [ title, setTitle ] = useState("");
   const [ postText, setPostText ] = useState("");
-
+  const [imageUpload, setImageUpload] = useState<File | null>(null);
   const postCollectionRef = collection(db, "posts")
+
   const CreatePost = async () => {
+    if (!imageUpload) return;
+
     const currentDate = Date.now();
-    const formattedDate = format(currentDate, 'dd MMM yyyy, HH:mm');
-  
-    await addDoc(postCollectionRef, {
-      title,
-      postText,
-      createdAt: formattedDate, 
-      author: {
-        name: auth.currentUser?.displayName,
-        id: auth.currentUser?.uid,
-        pfp: auth.currentUser?.photoURL,
-      },
-    });
+    const formattedDate = format(currentDate, "dd MMM yyyy, HH:mm");
+
+    const imageRef = ref(
+      storage,
+      `images/${imageUpload.name}`
+    );
+
+    try {
+      await uploadBytes(imageRef, imageUpload);
+      const downloadURL = await getDownloadURL(imageRef);
+
+      await addDoc(postCollectionRef, {
+        title,
+        postText,
+        createdAt: formattedDate,
+        imageUrl: downloadURL,
+        author: {
+          name: auth.currentUser?.displayName,
+          id: auth.currentUser?.uid,
+          pfp: auth.currentUser?.photoURL,
+        },
+      });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   
     toast.success('Successfully Created Post!', {
       pauseOnHover: false,
@@ -56,6 +73,15 @@ const Form = () => {
             onChange={(event) => {setPostText(event.target.value)}} 
             />
           </div>
+          <div className="flex flex-col px-2 mt-2">
+            <label className="text-sm py-2 font-medium">Upload an Image</label>
+            <input
+              type="file"
+              onChange={(event) => {
+                setImageUpload(event.target.files?.[0] || null);
+              }}
+            />
+          </div>
           <div className="flex justify-between items-center px-2 mt-2">
             <button className="px-4 py-2 rounded-lg border font-medium "><Link href={'/'}>Cancel</Link></button>
             <button className="px-4 py-2 rounded-lg text-black font-medium bg-white" onClick={CreatePost}>Publish</button>
@@ -68,3 +94,4 @@ const Form = () => {
 }
 
 export default Form
+
