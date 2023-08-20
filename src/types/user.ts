@@ -1,4 +1,8 @@
 export type User = {
-    displayName: string
-    photoURL: string
+    Posts: [];
+    displayName: string;
+    email: string;
+    photoURL: string;
+    uid: string;
+
   }
