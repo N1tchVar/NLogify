@@ -13,7 +13,7 @@ type User = {
 
   }
 const UserProfilePage = () => {
-  const [user, setUser] = useState<User | null>(null); // Update the type here
+  const [user, setUser] = useState<User | null>(null); 
 
   useEffect(() => {
     const getUserData = async () => {
@@ -24,7 +24,7 @@ const UserProfilePage = () => {
         const userDoc = await getDoc(userRef);
 
         if (userDoc.exists()) {
-          setUser(userDoc.data() as User); // Cast the data to User type
+          setUser(userDoc.data() as User); 
         }
       }
     };
