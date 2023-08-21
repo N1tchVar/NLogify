@@ -7,6 +7,7 @@ import { Post } from '@/types/post'
 import { IconShare } from '@tabler/icons-react'
 import Link from 'next/link';
 import { toast } from 'react-toastify'
+import { User } from '@/types/user'
  
 const PostCard = () => {
     const [postLists, setPostLists] = useState<Post[]>();;
@@ -20,6 +21,7 @@ const PostCard = () => {
     };
 
     useEffect(() => {
+        
         const getPosts = async () => {
             const data = await getDocs(postCollectionRef);
             const posts = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[];
@@ -39,7 +41,9 @@ const PostCard = () => {
                     <hr className='mt-2 mb-4 border-gray-500/80 hr'/>
                         <div className='flex justify-between items-center'>
                             <div className='flex justify-center items-center'>
+                                <Link href={`/users/${post.author.id}`}>
                                 <img className='h-8 rounded-3xl' src={post.author?.pfp}/> 
+                                </Link>
                                 <span className='px-2 text-sm text-white/80 font-bsemibold'> - {post.createdAt}</span>
                             </div>
                             <div className='flex justify-end items-center'>

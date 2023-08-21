@@ -7,7 +7,7 @@ import { IconFileText } from '@tabler/icons-react'
 import Link from 'next/link';
 
 
-type User = {
+export type User = {
   displayName: string;
   email: string;
   photoUrl: string;
