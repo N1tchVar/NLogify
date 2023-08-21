@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import { auth, db } from '@/lib/firebase/page';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { IconFileText } from '@tabler/icons-react'
 import Link from 'next/link';
+
 
 type User = {
   displayName: string;
@@ -81,8 +83,11 @@ const UserProfilePage = () => {
             ))}
         </div>
       ) : (
-        <div>
-              
+        <div className='flex justify-center items-center'>
+          <div className='flex flex-col justify-center items-center gap-4'>
+            <IconFileText size={68} className='bg-gray-500/50 p-2 rounded-full '/>
+            <h1>{user?.displayName} hasn't any post yet. 😞</h1>
+          </div>
         </div>
       )}
     </div>
