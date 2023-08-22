@@ -37,6 +37,10 @@ const ProfileUpdate = () => {
       }, []);
 
       const handleUpdateProfile = async () => {
+        if ( !photoUrl || !displayName ) {
+            toast.error('Both Display Name and Photo URL are required.');
+            return;
+        }
         try {
           const currentUser = auth.currentUser;
           if (currentUser) {
@@ -60,7 +64,7 @@ const ProfileUpdate = () => {
           {user ? (
             <div className='flex flex-col items-start p-2'>
               <div className='flex items-center'>
-                <img className='rounded-full' src={user.photoUrl} alt="" />
+                <img className='rounded-full h-20' src={user.photoUrl} alt="" />
                 <h1 className='font-extrabold text-2xl px-4'>{user.displayName}</h1>
               </div>
               <hr className='my-4 border-gray-500/80 w-full' />
@@ -68,20 +72,24 @@ const ProfileUpdate = () => {
           ) : (
             <p>Loading...</p>
           )}
-          <div className='flex flex-col items-start p-2'>
+          <div className='flex flex-col items-start p-2 gap-4'>
             <input
+              className='rounded-md border px-4 py-2 outline-none bg-transparent
+              text-accent-fg placeholder:text-accent-5 focus:border-accent-5'
               type='text'
               placeholder='New Display Name'
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
             />
             <input
+              className='rounded-md border px-4 py-2 outline-none bg-transparent
+              text-accent-fg placeholder:text-accent-5 focus:border-accent-5'
               type='text'
               placeholder='New Photo URL'
               value={photoUrl}
               onChange={(e) => setPhotoUrl(e.target.value)}
             />
-            <button onClick={handleUpdateProfile}>Update Profile</button>
+            <button className="px-4 py-2 rounded-lg text-black font-medium bg-white" onClick={handleUpdateProfile}>Update Profile</button>
           </div>
         </div>
       );
