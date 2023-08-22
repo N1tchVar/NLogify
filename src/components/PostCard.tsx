@@ -7,7 +7,6 @@ import { Post } from '@/types/post'
 import { IconShare } from '@tabler/icons-react'
 import Link from 'next/link';
 import { toast } from 'react-toastify'
-import { User } from '@/types/user'
  
 const PostCard = () => {
     const [postLists, setPostLists] = useState<Post[]>();;

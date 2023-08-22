@@ -91,7 +91,7 @@ export default function Menu() {
                       <IconUser/>Profile
                     </div>
                     </Link></DropdownMenuItem>
-                  <DropdownMenuItem><Link href={'/settings'}>
+                  <DropdownMenuItem><Link href={`/settings/${user?.uid}`}>
                     <div className='flex gap-2'>
                       <IconSettings/>Settings
                     </div>

@@ -69,7 +69,7 @@ const UserProfilePage = () => {
       {user ? (
         <div className='flex flex-col items-start p-2'>
           <div className='flex items-center'>
-            <img className='rounded-full' src={user.photoUrl} alt="" />
+            <img className='rounded-full h-20' src={user.photoUrl} alt="" />
             <h1 className='font-extrabold text-2xl px-4'>{user.displayName}</h1>
           </div>
           <hr className='my-4 border-gray-500/80 w-full' />
