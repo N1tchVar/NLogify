@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import { auth, db } from '@/lib/firebase/page';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
-import { IconFileText } from '@tabler/icons-react'
+import { IconFileText, IconShare } from '@tabler/icons-react'
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 
 export type User = {
@@ -31,6 +32,12 @@ const UserProfilePage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   
+  const copyPostPath = (path : any) => {
+    navigator.clipboard.writeText(path);
+    toast.success('Post path copied to clipboard!', {
+        position: toast.POSITION.TOP_CENTER
+    });
+};
 
   useEffect(() => {
     const getUserData = async () => {
@@ -73,11 +80,16 @@ const UserProfilePage = () => {
 
       {userPosts.length > 0 ? (
         <div>
+          <h1>Posts by {user?.displayName} : </h1>
             {userPosts.map((post) => (
               <div key={post.id}>
-                <h1>Posts by {user?.displayName} : </h1>
-                <div className='flex flex-col p-4'>
-                  <Link href={`/posts/${post.id}`}><h3 className='text-2xl'>{post.title}</h3></Link> 
+                <div className='flex flex-col p-4 gap-2'>
+                  <div className='flex items-center justify-between border border-gray-500/80 p-4 rounded-2xl '>
+                    <Link href={`/posts/${post.id}`}><h3 className='text-2xl'>{post.title}</h3></Link> 
+                    <div className=''>
+                      <IconShare className='cursor-pointer duration-200 hover:text-gray-500/70' onClick={() => copyPostPath(`localhost:300/posts/${post.id}`)} />
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

@@ -41,7 +41,7 @@ const PostCard = () => {
                     <hr className='mt-2 mb-4 border-gray-500/80 hr'/>
                         <div className='flex justify-between items-center'>
                             <div className='flex justify-center items-center'>
-                                <Link href={`/users/${post.author.id}`}>
+                                <Link href={``}>
                                 <img className='h-8 rounded-3xl' src={post.author?.pfp}/> 
                                 </Link>
                                 <span className='px-2 text-sm text-white/80 font-bsemibold'> - {post.createdAt}</span>
