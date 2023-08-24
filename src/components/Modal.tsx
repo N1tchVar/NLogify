@@ -50,7 +50,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
           <h1 className="font-semibold text-xl flex justify-start text-white text-center">
             Sign In With Google
           </h1>
-          <div className="gap-4 flex justify-center items-center">
+          <div className="gap-4 flex flex-col justify-center items-center">
             <button
               type='button'
               onClick={handleSignInWithGoogle}
