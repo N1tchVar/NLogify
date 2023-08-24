@@ -9,7 +9,7 @@ interface ModalProps {
   onLoginSuccess: () => void; 
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
+const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
   const [ signInWithGoogle ] = useSignInWithGoogle(auth);
 
   const handleSignInWithGoogle = async () => {
@@ -27,8 +27,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
           displayName: user.displayName,
           photoUrl: user.photoURL
         });
-  
-        onLoginSuccess();
+        
       }
     } catch (error) {
       console.error('Error logging in with Google:', error);
