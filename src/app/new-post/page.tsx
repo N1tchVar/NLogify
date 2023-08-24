@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Form from '@/components/Form';
 import { auth } from '@/lib/firebase/page';
-import Modal from '@/components/Modal'; // Adjust the import path
-import { useRouter } from 'next/router';
+import Modal from '@/components/Modal'; 
+import { useRouter } from 'next/navigation';
 
 const NewPostPage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
-
+  const router = useRouter(); 
 
   const openLoginModal = () => {
     setShowLoginModal(true);
@@ -18,8 +18,8 @@ const NewPostPage = () => {
     setShowLoginModal(false);
   };
 
-  const handleLoginSuccess= () => {
-    useRouter().push('/new-post');
+  const handleLoginSuccess = () => {
+    router.push('/new-post'); 
   };
 
   return (
@@ -29,10 +29,10 @@ const NewPostPage = () => {
         <Form />
       ) : (
         <Modal
-        visible={true}
-        onClose={closeLoginModal}
-        onLoginSuccess={handleLoginSuccess}
-      />
+          visible={true}
+          onClose={closeLoginModal}
+          onLoginSuccess={handleLoginSuccess}
+        />
       )}
     </div>
   );
