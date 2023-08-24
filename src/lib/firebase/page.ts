@@ -5,7 +5,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCgrQU8q0-l34fp5Gx36XrPE6TDnNPgnMs",
-  authDomain: "https://nlogify.vercel.app/",
+  authDomain: "nlogify.firebaseapp.com",
   projectId: "nlogify",
   storageBucket: "nlogify.appspot.com",
   messagingSenderId: "566846349100",
