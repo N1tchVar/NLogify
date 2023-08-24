@@ -48,7 +48,6 @@ export default function Menu() {
         theme: 'dark'
       });
     } catch (error) {
-      // Handle error if needed
       console.error('Error logging in with Google:', error);
     };
   };

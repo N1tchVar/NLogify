@@ -50,7 +50,6 @@ const UserProfilePage = () => {
         if (userDoc.exists()) {
           setUser(userDoc.data() as User);
 
-          // Retrieve user's posts
           const postsQuery = query(collection(db, 'posts'), where('author.id', '==', currentUser.uid));
           const querySnapshot = await getDocs(postsQuery);
           const posts = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Post));
