@@ -114,7 +114,6 @@ export default function Menu() {
       <Modal
         visible={useModal}
         onClose={closeModal}
-        onLoginSuccess={handleLoginSuccess} 
       />
       <div className='fixed bottom-0'>
         <ToastContainer position='top-center' autoClose={2000} theme="dark" />
