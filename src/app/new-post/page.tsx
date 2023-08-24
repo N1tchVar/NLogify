@@ -2,9 +2,7 @@
 
 import React, { useState } from 'react';
 import Form from '@/components/Form';
-import { auth } from '@/lib/firebase/page';
-import Modal from '@/components/Modal'; // Adjust the import path
-import { useRouter } from 'next/router';
+import Modal from '@/components/Modal';
 
 const NewPostPage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);

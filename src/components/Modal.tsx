@@ -6,7 +6,6 @@ import { doc, setDoc } from 'firebase/firestore';
 interface ModalProps {
   visible: boolean;
   onClose: () => void;
-  onLoginSuccess: () => void; 
 }
 
 const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
@@ -27,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
           displayName: user.displayName,
           photoUrl: user.photoURL
         });
-        
+
       }
     } catch (error) {
       console.error('Error logging in with Google:', error);
