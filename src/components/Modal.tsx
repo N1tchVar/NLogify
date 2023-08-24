@@ -6,27 +6,33 @@ import { doc, setDoc } from 'firebase/firestore';
 interface ModalProps {
   visible: boolean;
   onClose: () => void;
+  onLoginSuccess: () => void; 
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
   const [ signInWithGoogle ] = useSignInWithGoogle(auth);
 
   const handleSignInWithGoogle = async () => {
     try {
       await signInWithGoogle();
   
+      // Assuming you have access to the authenticated user object
       const user = auth.currentUser;
   
       if (user) {
+        // Create a document reference for the user in Firestore
         const userRef = doc(db, 'users', user.uid);
   
+        // Set the user data in the document
         await setDoc(userRef, {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
           photoUrl: user.photoURL
+          // You can add more fields as needed
         });
-
+  
+        onLoginSuccess();
       }
     } catch (error) {
       console.error('Error logging in with Google:', error);
