@@ -53,6 +53,7 @@ export default function Menu() {
   };
 
   const handleLoginSuccess = () => {
+    closeModal();
     toast.success('Successfully logged in', {
       pauseOnHover: false,
       hideProgressBar: true

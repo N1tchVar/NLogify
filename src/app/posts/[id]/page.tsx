@@ -35,9 +35,9 @@ const Post = ({ params }: { params: { id: string } }) => {
     <div className="flex justify-center items-center h-screen">
       <div className="flex justify-center flex-col items-center">
         <h1 className="text-2xl font-bold">{post.title}</h1>
-        <div className="py-2 w-1/2 text-center">
+        <div className="flex justify-center items-center flex-col py-2 w-1/2 text-center">
           <p className="text-md">{post.postText}</p>
-          <img src={post.imageUrl} alt="" />
+          <img className="w-1/3" src={post.imageUrl} alt="" />
         </div>
         <div className="flex justify-start items-center py-8  ">
           <img src={post.author.pfp} className="h-10 rounded-3xl" alt="" />

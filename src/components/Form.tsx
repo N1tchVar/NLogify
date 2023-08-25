@@ -8,15 +8,27 @@ import { ToastContainer, toast } from "react-toastify"
 import { format } from 'date-fns';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
+// Loader
+import { PuffLoader } from 'react-spinners';
 
 const Form = () => {
   const [ title, setTitle ] = useState("");
   const [ postText, setPostText ] = useState("");
   const [imageUpload, setImageUpload] = useState<File | null>(null);
+  const [ loader, setLoader ] = useState(false);
   const postCollectionRef = collection(db, "posts")
 
   const CreatePost = async () => {
-    if (!imageUpload) return;
+    if (!title || !postText || !imageUpload) {
+      toast.error('Please fill all fields', {
+        pauseOnHover: false,
+        hideProgressBar: true,
+        theme: 'dark',
+      });
+      return
+    }
+
+    setLoader(true);
 
     const currentDate = Date.now();
     const formattedDate = format(currentDate, "dd MMM yyyy, HH:mm");
@@ -45,6 +57,8 @@ const Form = () => {
       console.error("Error uploading image:", error);
     }
   
+
+    setLoader(false);
     toast.success('Successfully Created Post!', {
       pauseOnHover: false,
       hideProgressBar: true,
@@ -85,7 +99,16 @@ const Form = () => {
           </div>
           <div className="flex justify-between items-center px-2 mt-2">
             <button className="px-4 py-2 rounded-lg border font-medium "><Link href={'/'}>Cancel</Link></button>
-            <button className="px-4 py-2 rounded-lg text-black font-medium bg-white" onClick={CreatePost}>Publish</button>
+            <button className="px-4 py-2 rounded-lg text-black font-medium bg-white"
+             onClick={CreatePost}
+             disabled={loader}
+             >
+               {loader ? (
+                <PuffLoader color={'#000'} loading={loader} size={32} />
+              ) : (
+                'Publish'
+              )}
+             </button>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ const PostCard = () => {
                                 <span className='px-2 text-sm text-white/80 font-bsemibold'> - {post.createdAt}</span>
                             </div>
                             <div className='flex justify-end items-center'>
-                                <IconShare className='cursor-pointer duration-200 hover:text-gray-500/70' onClick={() => copyPostPath(`localhost:300/posts/${post.id}`)} />
+                                <IconShare className='cursor-pointer duration-200 hover:text-gray-500/70' onClick={() => copyPostPath(`nlogify.vercel.app/posts/${post.id}`)} />
                             </div>
                         </div>
                     </div>
