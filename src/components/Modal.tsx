@@ -1,7 +1,10 @@
+'use client';
+
 import { IconBrandGoogle } from '@tabler/icons-react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, db } from '@/lib/firebase/page';
 import { doc, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
 
 interface ModalProps {
   visible: boolean;
@@ -11,6 +14,11 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
   const [ signInWithGoogle ] = useSignInWithGoogle(auth);
+  const [useModal, setUseModal] = useState(false);
+
+  const closeModal = () => {
+    setUseModal(false);
+  };
 
   const handleSignInWithGoogle = async () => {
     try {
@@ -27,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, onLoginSuccess }) => {
           displayName: user.displayName,
           photoUrl: user.photoURL
         });
-  
+        closeModal();
         onLoginSuccess();
       }
     } catch (error) {
