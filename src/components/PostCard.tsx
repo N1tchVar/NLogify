@@ -38,12 +38,12 @@ const PostCard = () => {
         <div className='flex flex-col gap-4 justify-center items-center mt-10 w-full'> 
           {loading ? (
              [...Array(5)].map((_, index) => (
-              <div key={index} className='border border-slate-100/20 p-4 rounded-lg w-full'>
+              <div key={index} className='border border-slate-100/20 p-4 rounded-lg md:w-full'>
                   <div className="flex py-4 items-center space-x-4">
                       <Skeleton className="h-12 w-12 rounded-full" />
                       <div className="space-y-2">
-                          <Skeleton className="h-4 w-[350px]" />
-                          <Skeleton className="h-4 w-[300px]" />
+                          <Skeleton className="h-4 w-[250px]" />
+                          <Skeleton className="h-4 w-[200px]" />
                       </div>
                   </div>
               </div>
